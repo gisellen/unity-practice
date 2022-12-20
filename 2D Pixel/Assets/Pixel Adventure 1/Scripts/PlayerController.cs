@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private BoxCollider2D coll;
+    private PolygonCollider2D coll;
     private SpriteRenderer sprite;
     private Animator anim;
 
@@ -14,12 +14,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 7f;
 
-    private enum MovememntState { idle, running, jumping, falling }
+    private enum MovemementState { idle, running, jumping, falling }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
+        coll = GetComponent<PolygonCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -35,41 +35,41 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAnimationUpdate()
     {
-        MovememntState state;
+        MovemementState state;
 
         if (dirX > 0f)
         {
-            state = MovememntState.running;
+            state = MovemementState.running;
             sprite.flipX = false;
         }
         else if (dirX < 0f)
         {
-            state = MovememntState.running;
+            state = MovemementState.running;
             sprite.flipX = true;
         }
         else
         {
-            state = MovememntState.idle;
+            state = MovemementState.idle;
         }
 
         // keep running animation on top of jumping animation because it has higher priority
         if (rb.velocity.y > .1f) // tells if the movement is going up
         {
 
-            state = MovememntState.jumping;
+            state = MovemementState.jumping;
 
         }
 
          if (rb.velocity.y < -.1f) //downward motion
         { // when youre not touching the ground
 
-            state = MovememntState.falling;
+            state = MovemementState.falling;
 
         }
         anim.SetInteger("state", (int)state);
     }
 
-    private bool IsGrounded(){
+    private bool IsGrounded(){ // if player is touching the ground then they are allowed to jump, this avoids the player jumping multiple times.
        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 }

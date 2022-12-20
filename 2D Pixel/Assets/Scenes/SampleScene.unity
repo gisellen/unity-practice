@@ -324,6 +324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2860ef288bbbec94a82e77747860d4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 64
   moveSpeed: 7
   jumpForce: 7
 --- !u!95 &492493325
@@ -657,7 +660,8 @@ GameObject:
   - component: {fileID: 1144105745}
   - component: {fileID: 1144105744}
   - component: {fileID: 1144105746}
-  m_Layer: 0
+  - component: {fileID: 1144105747}
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1291,7 +1295,7 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1305,14 +1309,33 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.0467887, y: -2.9957051}
-      - {x: 1.9734516, y: -2.0292416}
-      - {x: -1.0854912, y: -2.0487447}
-      - {x: -1.1025372, y: -2.9613113}
-      - {x: -10.921081, y: -3.0286932}
-      - {x: -10.985207, y: -5.0456204}
-      - {x: 11.045671, y: -5.005873}
-      - {x: 11.095453, y: -2.9930983}
+    - - {x: 2.0333033, y: -2.9881794}
+      - {x: 2.0335083, y: -1.9677476}
+      - {x: -1.0150166, y: -1.9696741}
+      - {x: -1.0162905, y: -2.9945052}
+      - {x: -11.063708, y: -2.991084}
+      - {x: -11.061798, y: -5.0319395}
+      - {x: 11.057794, y: -5.005873}
+      - {x: 11.057841, y: -2.9802945}
+--- !u!251 &1144105747
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144105742}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  m_RotationalOffset: 0
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1614068759
 GameObject:
   m_ObjectHideFlags: 0
